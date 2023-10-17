@@ -222,17 +222,21 @@ public class LinkedList <E> implements List<E> {
 
     @Override
     public E get(int index) {
-        return null;
+        return search(index).data;
     }
 
     @Override
     public void set(int index, E value) {
 
+        Node<E> replaceNode = search(index);
+        replaceNode.data = null;
+        replaceNode.data = value;
+
     }
 
     @Override
     public boolean contains(Object value) {
-        return false;
+        return indexOf(value) >= 0;
     }
 
     @Override
