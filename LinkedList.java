@@ -1,5 +1,7 @@
 import Interface_form.List;
 
+import java.util.NoSuchElementException;
+
 
 class Node<E> {     // 노드 클래스
     E data;
@@ -124,6 +126,132 @@ public class LinkedList <E> implements List<E> {
         prev_Node.next = newNode;
         newNode.next = next_Node;
         size++;
+
+    }
+
+    public E remove() {
+
+
+        Node<E> headNode = head;
+
+        if (headNode == null){
+            throw new NoSuchElementException();
+        }
+
+        E element = headNode.data;
+
+        Node<E> nextNode = head.next;
+
+        head.data = null;
+        head.next = null;
+
+        head = nextNode;
+        size--; //기존 첫 번째 노드의 데이터를 null로 변환 후, 원래는 2번째였던 노드의 데이터를 1번째로 옮김. 이 후 사이즈는 하나 감소
+
+        if (size == 0) {
+            tail = null;
+        } return element;
+
+    }
+
+    @Override
+    public E remove(int index) {
+
+        if (index == 0) {
+            return remove();
+        }
+
+        if (index >= size || index < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        Node<E> preNode = search(index - 1);
+        Node<E> removeNode = preNode.next;
+        Node<E> nextNode = removeNode.next;
+
+        E element = removeNode.data;
+
+        if (preNode.next == null) {
+            tail = preNode;
+        }
+
+        removeNode.next = null;
+        removeNode.data = null;
+        size--;
+
+        return element;
+    }
+
+    @Override
+    public boolean remove(Object value) {
+
+        Node<E> preNode = head;
+        boolean hasValue = false;
+        Node<E> x = head;
+
+        for (; x != null; x = x.next) {
+            if (value.equals(x.data)) {
+                hasValue = true;
+                break;
+            }
+            preNode = x;
+        }
+
+        if (x == null) {
+            return false;
+        }
+
+        if (x.equals(head)) {
+            remove();
+            return true;
+        }
+
+        else {
+            preNode.next = x.next;
+
+            if (preNode.next == null) {
+                tail = preNode;
+            }
+
+            x.data = null;
+            x.next = null;
+            size--;
+            return true;
+        }
+    }
+
+    @Override
+    public E get(int index) {
+        return null;
+    }
+
+    @Override
+    public void set(int index, E value) {
+
+    }
+
+    @Override
+    public boolean contains(Object value) {
+        return false;
+    }
+
+    @Override
+    public int indexOf(Object value) {
+        return 0;
+    }
+
+    @Override
+    public int size() {
+        return 0;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public void clear() {
 
     }
 }
