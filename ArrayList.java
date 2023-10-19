@@ -1,10 +1,10 @@
 
 
-import Interface_form.List;
+import Interface_form.Listinterface;
 
 import java.util.Arrays;
 
-public class ArrayList<E> implements List<E> {
+public class ArrayList<E> implements Listinterface<E> {
 
     private static final int DEFAULT_CAPACITY = 10; //최소 용적(담을 수 있는 용량)크기, 기본값 10
     private static final Object[] EMPTY_ARRAY = {}; // 빈 배열

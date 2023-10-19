@@ -1,6 +1,6 @@
 package Interface_form;
 
-public interface List<E> {
+public interface Listinterface<E> {
 
     /**
      * 리스트에 요소를 추가합니다.

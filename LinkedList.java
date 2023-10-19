@@ -1,4 +1,4 @@
-import Interface_form.List;
+import Interface_form.Listinterface;
 
 import java.util.NoSuchElementException;
 
@@ -14,7 +14,7 @@ class Node<E> {     // 노드 클래스
 }
 
 
-public class LinkedList <E> implements List<E> {
+public class LinkedList <E> implements Listinterface<E> {
 
     private Node<E> head;  // node 첫 부분
     private Node<E> tail;  // node 마지막 부분
