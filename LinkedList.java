@@ -145,8 +145,8 @@ public class LinkedList <E> implements List<E> {
         head.data = null;
         head.next = null;
 
-        head = nextNode;
-        size--; //기존 첫 번째 노드의 데이터를 null로 변환 후, 원래는 2번째였던 노드의 데이터를 1번째로 옮김. 이 후 사이즈는 하나 감소
+        head = nextNode;        //기존 첫 번째 노드의 데이터를 null로 변환 후,
+        size--;                 // 원래는 2번째였던 노드의 데이터를 1번째로 옮김. 이 후 사이즈는 하나 감소
 
         if (size == 0) {
             tail = null;
@@ -222,13 +222,13 @@ public class LinkedList <E> implements List<E> {
 
     @Override
     public E get(int index) {
-        return search(index).data;
-    }
+        return search(index).data;          // search() 내부에서 예외발생하면 해당 예외를 던짐
+    }                                       // 다만 search는 노드를 반환하고, get은 노드의 데이터를 반환하는 차이점
 
     @Override
     public void set(int index, E value) {
 
-        Node<E> replaceNode = search(index);
+        Node<E> replaceNode = search(index);    // search()로 해당 노드를 찾고, 데이터를 새로운 데이터로 변경
         replaceNode.data = null;
         replaceNode.data = value;
 
@@ -244,7 +244,7 @@ public class LinkedList <E> implements List<E> {
         int index = 0;
 
         for (Node<E> x = head; x != null; x = x.next ) {
-            if (value.equals(x.data)) {
+            if (value.equals(x.data)) {         // 객체 간의 동등성 비교는 == 이 아닌 .equals
                 return index;
             }
 
