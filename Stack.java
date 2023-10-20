@@ -82,27 +82,49 @@ public class Stack<E> implements StackInterface<E> {
     public E peek() {
 
         if (size == 0) {
-            thorw
+            throw new EmptyStackException();
         }
+
+        return (E) array[size - 1];
     }
 
     @Override
     public int search(Object value) {
-        return 0;
+
+        if (value == null) {
+            for (int idx = size - 1; idx >= 0; idx--) {
+                if (array[idx] == null) {
+                    return size - idx;
+                }
+            }
+        } else {
+            for (int idx = size - 1; idx >= 0; idx--) {
+
+                if (array[idx].equals(value)) {
+                    return size - idx;
+                }
+            }
+        }
+        return -1;
     }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
     public void clear() {
 
+        for (int i = 0; i < size; i++) {       // 저장되어 있는 모든 데이터 null 처리
+            array[i] = null;
+        }
+        size = 0;
+        resize();
     }
 
     @Override
     public boolean empty() {
-        return false;
+        return size == 0;
     }
 }
