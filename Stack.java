@@ -49,7 +49,15 @@ public class Stack<E> implements StackInterface<E> {
 
     @Override
     public E push(E item) {
-        return null;
+
+        if (size == array.length) {         // 용적이 가득 차 있다면 용적 재할당
+            resize();
+        }
+
+        array[size] = item;                 // 마지막 위치에 데이터 추가. size + 1
+        size++;
+
+        return item;
     }
 
     @Override
