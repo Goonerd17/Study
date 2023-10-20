@@ -1,6 +1,7 @@
 import Interface_form.StackInterface;
 
 import java.util.Arrays;
+import java.util.EmptyStackException;
 
 public class Stack<E> implements StackInterface<E> {
 
@@ -62,12 +63,27 @@ public class Stack<E> implements StackInterface<E> {
 
     @Override
     public E pop() {
-        return null;
+
+        if (size == 0) {                     // 삭제할 데이터가 없다면 Stack이 빈 예외 발생
+            throw new EmptyStackException();
+        }
+
+        E object = (E) array[size - 1];      // 삭제 요소를 반환할 임시 변수
+
+        array[size - 1] = null;              // 요소 삭제
+
+        size --;
+        resize();
+
+        return object;
     }
 
     @Override
     public E peek() {
-        return null;
+
+        if (size == 0) {
+            thorw
+        }
     }
 
     @Override
