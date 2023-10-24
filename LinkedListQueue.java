@@ -1,6 +1,6 @@
 import Interface_form.QueueInterface;
 
-public class PriorityQueue extends QueueInterface {
+public class LinkedListQueue implements QueueInterface {
 
     @Override
     public boolean offer(Object o) {
